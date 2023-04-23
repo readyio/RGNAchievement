@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RGNAchievement</name>
+    </assembly>
+    <members>
+        <member name="T:RGN.Modules.Achievement.AchievementsModule">
+            <summary>
+            This module is responsible for achievements
+            You can create new achievements using the developers dashboard
+            When you trigger the achievements the user can receive 3 types of rewards:
+            1. Coin currencies rewards - adds coins to users data
+            2. Virtual Items rewards - adds virtual items to users inventory
+            3. Progression rewards - adds progression points to users progression data (see GameProgressModule.GetUserProgressionDataAsync())
+            </summary>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetAsync(System.Int64,System.Int32)">
+            <summary>
+            Returns all achievements created for current project
+            Supports pagination queries in case the <paramref name="startAfter"/> and <paramref name="limit"/> are provided
+            </summary>
+            <param name="startAfter">The time stamp to start the query after <see cref="F:RGN.Modules.Achievement.AchievementData.updatedAt"/></param>
+            <param name="limit">Maximal number of documents to return</param>
+            <returns>All projects achievements</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.TriggerAsync(System.String)">
+            <summary>
+            Triggers the achievement to give rewards to the user
+            For more information about the rewards see <see cref="T:RGN.Modules.Achievement.AchievementData"/> class
+            </summary>
+            <param name="achievementId">The achievement id to trigger</param>
+            <returns>Achievement Id</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserCompletedAchievements(System.String,System.Int64,System.Int32)">
+            <summary>
+            Gets current user competed achievements
+            If the <paramref name="userId"/> is provided, then it returns the comleted achievements for provided userId
+            Supports pagination queries in case the <paramref name="startAfter"/> and <paramref name="limit"/> are provided
+            </summary>
+            <param name="userId">User id to return the completed achievements</param>
+            <param name="startAfter">The time stamp to start the query after <see cref="F:RGN.Modules.Achievement.CompletedAchievement.lastCompleteTime"/></param>
+            <param name="limit">Maximal number of documents to return</param>
+            <returns>Requested amount of completed achievements</returns>
+        </member>
+        <member name="T:RGN.Modules.Achievement.AchievementData">
+            <summary>
+            Represents achievement data from the backend
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.achievementId">
+            <summary>
+            Achievement document id. To trigger an achievement the id is needed
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.name">
+            <summary>
+            Achievement name. This value can be null or empty
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.description">
+            <summary>
+            Achievement description. This value can be null or empty
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.virtualItemRewards">
+            <summary>
+            Virtual items ids and quantity rewards to add to users inventory when
+            the achievement is triggered
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.currencyRewards">
+            <summary>
+            Currency rewards to add to the users account when the achievement
+            is triggered
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.progressionRewards">
+            <summary>
+            Progression data rewards to add to users data when the achievement
+            is triggered. You can get the custom progression data by using the
+            GameProgressModule.I.GetUserProgressionDataAsync() method
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.repeatable">
+            <summary>
+            Can this achievement be applied multiple times to the same user account
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.repeatNoMoreOftenThanCron">
+            <summary>
+            If this is provided, the the trigger for this achievement will work no more
+            often that the specified cron string.
+            *    *    *    *    *    *
+            ┬    ┬    ┬    ┬    ┬    ┬
+            │    │    │    │    │    |
+            │    │    │    │    │    └ day of week(0 - 7, 1L - 7L) (0 or 7 is Sun)
+            │    │    │    │    └───── month(1 - 12)
+            │    │    │    └────────── day of month(1 - 31, L)
+            │    │    └─────────────── hour(0 - 23)
+            │    └──────────────────── minute(0 - 59)
+            └───────────────────────── second(0 - 59, optional)
+            You can use the https://crontab.guru/ to create cron settings
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.allowClientTrigger">
+            <summary>
+            Can this achievement be triggered from the client side.
+            If this parameter is false, then the trigger function can be called only
+            from the Ready backend side. You can refer to matchmaking configuration for more info
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.createdAt">
+            <summary>
+            Time when the achievement was created
+            in milliseconds since midnight, January 1, 1970 UTC.
+            This field is automatically populated by the backend
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.updatedAt">
+            <summary>
+            Time when the achievement was updated
+            in milliseconds since midnight, January 1, 1970 UTC.
+            This field is automatically populated by the backend
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.createdBy">
+            <summary>
+            Creator user id
+            This field is automatically populated by the backend
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.updatedBy">
+            <summary>
+            Updator user id
+            This field is automatically populated by the backend
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.CompletedAchievement">
+            <summary>
+            Represents completed achievement data from the users data
+            If the achievement is <see cref="F:RGN.Modules.Achievement.AchievementData.repeatable"/> then
+            this document can contain more that one 
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.CompletedAchievement.achievementId">
+            <summary>
+            Achievement document id
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.CompletedAchievement.lastCompleteTime">
+            <summary>
+            Time when the achievement was last time completed
+            in milliseconds since midnight, January 1, 1970 UTC.
+            This field is automatically populated by the backend
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.CompletedAchievement.history">
+            <summary>
+            Represents all times the user comleted this achievement
+            This collection can contain more than 1 item in case the
+            <see cref="F:RGN.Modules.Achievement.AchievementData.repeatable"/> is true
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.CompletedAchievementHistoryEntry">
+            <summary>
+            Represents completed achievement history entry for a given achievement
+            This data is comming from the users data
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.CompletedAchievementHistoryEntry.achievementId">
+            <summary>
+            Achievement document id
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.CompletedAchievementHistoryEntry.virtualItemRewards">
+            <summary>
+            Virtual items ids and quantity rewards that was added to users inventory
+            when this achievement was triggered
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.CompletedAchievementHistoryEntry.currencyRewards">
+            <summary>
+            Currency rewards that was added to users data
+            when this achievement was triggered
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.CompletedAchievementHistoryEntry.progressionRewards">
+            <summary>
+            Progression data rewards that was added to users data
+            when this achievement was triggered. You can get the custom progression data by using the
+            GameProgressModule.I.GetUserProgressionDataAsync() method
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.CompletedAchievementHistoryEntry.completeTime">
+            <summary>
+            Time when the achievement triggered
+            in milliseconds since midnight, January 1, 1970 UTC.
+            This field is automatically populated by the backend
+            </summary>
+        </member>
+    </members>
+</doc>
