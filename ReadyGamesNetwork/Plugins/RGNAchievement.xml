@@ -28,7 +28,7 @@
             Triggers the achievement to give rewards to the user
             For more information about the rewards see <see cref="T:RGN.Modules.Achievement.AchievementData"/> class
             </summary>
-            <param name="achievementId">The achievement id to trigger</param>
+            <param name="id">The achievement id to trigger</param>
             <returns>Achievement Id</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserCompletedAchievements(System.String,System.Int64,System.Int32)">
@@ -47,9 +47,14 @@
             Represents achievement data from the backend
             </summary>
         </member>
-        <member name="F:RGN.Modules.Achievement.AchievementData.achievementId">
+        <member name="F:RGN.Modules.Achievement.AchievementData.id">
             <summary>
             Achievement document id. To trigger an achievement the id is needed
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.appIds">
+            <summary>
+            List of application ids where this achievement is used
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.name">
@@ -142,7 +147,7 @@
             this document can contain more that one 
             </summary>
         </member>
-        <member name="F:RGN.Modules.Achievement.CompletedAchievement.achievementId">
+        <member name="F:RGN.Modules.Achievement.CompletedAchievement.id">
             <summary>
             Achievement document id
             </summary>
@@ -167,7 +172,7 @@
             This data is comming from the users data
             </summary>
         </member>
-        <member name="F:RGN.Modules.Achievement.CompletedAchievementHistoryEntry.achievementId">
+        <member name="F:RGN.Modules.Achievement.CompletedAchievementHistoryEntry.id">
             <summary>
             Achievement document id
             </summary>
