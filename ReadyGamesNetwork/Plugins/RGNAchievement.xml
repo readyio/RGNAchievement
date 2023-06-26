@@ -14,14 +14,42 @@
             3. Progression rewards - adds progression points to users progression data (see GameProgressModule.GetUserProgressionDataAsync())
             </summary>
         </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetAsync(System.Int64,System.Int32)">
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByIdsAsync(System.Collections.Generic.List{System.String})">
             <summary>
-            Returns all achievements created for current project
-            Supports pagination queries in case the <paramref name="startAfter"/> and <paramref name="limit"/> are provided
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN)
+            based on the provided achievements identifiers.
             </summary>
-            <param name="startAfter">The time stamp to start the query after <see cref="F:RGN.Modules.Achievement.AchievementData.updatedAt"/></param>
-            <param name="limit">Maximal number of documents to return</param>
-            <returns>All projects achievements</returns>
+            <param name="ids">A list of application identifiers used to filter the achievements.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the provided ids list is null or empty.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
+            <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the specified identifiers.</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByAppIdsAsync(System.Collections.Generic.List{System.String},System.Int32,System.String)">
+            <summary>
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) store based on
+            the provided application identifiers.
+            </summary>
+            <param name="appIds">A list of application identifiers used to filter the store offers.</param>
+            <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
+            <param name="startAfter">An optional parameter representing an achievement id after which to
+            start retrieving the achievements. The default is an empty string.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided appIds list is null or empty.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
+            <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the specified application identifiers,
+            limit and other optional parameters.</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetForCurrentAppAsync(System.Int32,System.String)">
+            <summary>
+            Asynchronously retrieves a list of achievements for the current application from the Ready Games Network (RGN) store.
+            </summary>
+            <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
+            <param name="startAfter">An optional parameter representing an achievement id after which to
+            start retrieving the achievements. The default is an empty string.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list
+            of <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the current application identifier,
+            limit and other optional parameters.</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.TriggerAsync(System.String)">
             <summary>
