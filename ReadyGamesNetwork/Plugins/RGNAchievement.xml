@@ -59,7 +59,7 @@
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetForCurrentAppAsync(System.Int32,System.String)">
             <summary>
-            Asynchronously retrieves a list of achievements for the current application from the Ready Games Network (RGN) store.
+            Asynchronously retrieves a list of achievements for the current application from the Ready Games Network (RGN).
             </summary>
             <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
             <param name="startAfter">An optional parameter representing an achievement id after which to
@@ -67,6 +67,37 @@
             <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
             <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list
             of <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the current application identifier,
+            limit and other optional parameters.</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByAppIdsWithUserDataAsync(System.Collections.Generic.List{System.String},System.Int32,System.String,System.Boolean)">
+            <summary>
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) based on
+            the provided application identifiers. The user achievement data is also returned in case user made any progress
+            with the given achievement
+            </summary>
+            <param name="appIds">A list of application identifiers used to filter the store offers.</param>
+            <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
+            <param name="startAfter">An optional parameter representing an achievement id after which to
+            start retrieving the achievements. The default is an empty string.</param>
+            <param name="withHistory">An optional parameter to request the user achievements with the history entries. 
+            The default is false</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided appIds list is null or empty.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
+            <see cref="T:RGN.Modules.Achievement.AchievementWithUserData"/> objects representing the achievements that match the specified application identifiers,
+            limit and other optional parameters.</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetForCurrentAppWithUserDataAsync(System.Int32,System.String)">
+            <summary>
+            Asynchronously retrieves a list of achievements for the current application from the Ready Games Network (RGN).
+            The user achievement data is also returned in case user made any progress with the given achievement
+            </summary>
+            <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
+            <param name="startAfter">An optional parameter representing an achievement id after which to
+            start retrieving the achievements. The default is an empty string.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list
+            of <see cref="T:RGN.Modules.Achievement.AchievementWithUserData"/> objects representing the achievements that match the current application identifier,
             limit and other optional parameters.</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.TriggerAsync(System.String,System.Int32)">
@@ -173,14 +204,20 @@
             End time of the achievement, when it becomes unavailable for users
             </summary>
         </member>
-        <member name="F:RGN.Modules.Achievement.AchievementData.resetTimeLimit">
-            <summary>
-            Should the achievement be automatically reset
-            </summary>
-        </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.resetTimeLimitEvery">
             <summary>
-            Define cron value when the achievement should be reset
+            Define cron value when the achievement should reset. This parameter is used
+            to update the <see cref="F:RGN.Modules.Achievement.AchievementData.startTime"/> and <see cref="F:RGN.Modules.Achievement.AchievementData.endTime"/> values.
+            *    *    *    *    *    *
+            ┬    ┬    ┬    ┬    ┬    ┬
+            │    │    │    │    │    |
+            │    │    │    │    │    └ day of week(0 - 7, 1L - 7L) (0 or 7 is Sun)
+            │    │    │    │    └───── month(1 - 12)
+            │    │    │    └────────── day of month(1 - 31, L)
+            │    │    └─────────────── hour(0 - 23)
+            │    └──────────────────── minute(0 - 59)
+            └───────────────────────── second(0 - 59, optional)
+            You can use the https://crontab.guru/ to create cron settings
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.rewards">
@@ -248,6 +285,18 @@
             For "virtualItem" and "currency", it represents the number of items or coins rewarded.
             For "progression", it represents the increment value for the user's progression.
             </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.AchievementWithUserData">
+            <summary>
+            Represents achievement data from the backend
+            </summary>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementWithUserData.GetUserAchievement">
+            <summary>
+            Get user achievement. This method can return null in case the user
+            have not made any progress with the achievement
+            </summary>
+            <returns>User Achievement data</returns>
         </member>
         <member name="T:RGN.Modules.Achievement.CompletedAchievementHistoryEntry">
             <summary>
