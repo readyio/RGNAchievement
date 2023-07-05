@@ -193,6 +193,7 @@
             <summary>
             Time when the achievement was created
             in milliseconds since midnight, January 1, 1970 UTC.
+            Refer to <see cref="T:RGN.Utility.DateTimeUtility"/> for helper methods.
             This field is automatically populated by the backend
             </summary>
         </member>
@@ -200,6 +201,7 @@
             <summary>
             Time when the achievement was updated
             in milliseconds since midnight, January 1, 1970 UTC.
+            Refer to <see cref="T:RGN.Utility.DateTimeUtility"/> for helper methods.
             This field is automatically populated by the backend
             </summary>
         </member>
@@ -213,6 +215,38 @@
             <summary>
             Updater user id
             This field is automatically populated by the backend
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.AchievementReward">
+            <summary>
+            This class represents the AchievementReward in the Ready Games Network (RGN) Unity SDK's AchievementsModule.
+            An AchievementReward is a generic type of reward that can be earned by the user upon completing an achievement.
+            This could be a Virtual Item, Currency Coins, or Progression reward, depending on the `type`.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementReward.type">
+            <summary>
+            The type of reward this achievement offers. 
+            This could be "virtualItem", "currency", or "progression"
+            to match the different types of reward systems available.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementReward.appIds">
+            <summary>
+            The list of application IDs for which this achievement reward is applicable. 
+            This allows rewards to be scoped to specific applications within a developer's portfolio.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementReward.name">
+            <summary>
+            The name of the reward. This could be the id of the virtual item, currency name, or progression id.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementReward.quantity">
+            <summary>
+            The quantity of the reward that will be given to the user upon completing the achievement.
+            For "virtualItem" and "currency", it represents the number of items or coins rewarded.
+            For "progression", it represents the increment value for the user's progression.
             </summary>
         </member>
         <member name="T:RGN.Modules.Achievement.CompletedAchievementHistoryEntry">
@@ -242,6 +276,7 @@
             <summary>
             Time when the achievement triggered
             in milliseconds since midnight, January 1, 1970 UTC.
+            Refer to <see cref="T:RGN.Utility.DateTimeUtility"/> for helper methods.
             This field is automatically populated by the backend
             </summary>
         </member>
@@ -282,6 +317,7 @@
             <summary>
             Time when the achievement was last time completed
             in milliseconds since midnight, January 1, 1970 UTC.
+            Refer to <see cref="T:RGN.Utility.DateTimeUtility"/> for helper methods.
             This field is automatically populated by the backend
             </summary>
         </member>
