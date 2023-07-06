@@ -197,11 +197,15 @@
         <member name="F:RGN.Modules.Achievement.AchievementData.startTime">
             <summary>
             Start time of the achievement, when it can be available for users
+            in milliseconds since midnight, January 1, 1970 UTC.
+            Refer to <see cref="T:RGN.Utility.DateTimeUtility"/> for helper methods.
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.endTime">
             <summary>
             End time of the achievement, when it becomes unavailable for users
+            in milliseconds since midnight, January 1, 1970 UTC.
+            Refer to <see cref="T:RGN.Utility.DateTimeUtility"/> for helper methods.
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.resetTimeLimitEvery">
