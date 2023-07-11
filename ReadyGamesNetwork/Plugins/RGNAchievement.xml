@@ -100,6 +100,16 @@
             of <see cref="T:RGN.Modules.Achievement.AchievementWithUserData"/> objects representing the achievements that match the current application identifier,
             limit and other optional parameters.</returns>
         </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByNameAsync(System.String)">
+            <summary>
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN)
+            based on the provided achievement name.
+            </summary>
+            <param name="name">Name to filter achievements.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the provided name is null or empty.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
+            <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the specified identifiers.</returns>
+        </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.TriggerAsync(System.String,System.Int32)">
             <summary>
             Triggers the achievement to make achievement progress
