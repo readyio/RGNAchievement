@@ -160,6 +160,11 @@
             List of application ids where this achievement is used
             </summary>
         </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.requestName">
+            <summary>
+            Achievement request name. This value can be used to query or trigger achievements
+            </summary>
+        </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.name">
             <summary>
             Achievement name. This value can be null or empty
