@@ -126,12 +126,20 @@
             <param name="progress">The achievement trigger progress delta</param>
             <returns>Achievement Id</returns>
         </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.ClaimAsync(System.String)">
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.ClaimByIdAsync(System.String)">
             <summary>
             Claim the achievement to give rewards to the user
             For more information about the rewards see <see cref="T:RGN.Modules.Achievement.AchievementData"/> class
             </summary>
-            <param name="id">The achievement id to trigger</param>
+            <param name="requestName">The achievement id to trigger</param>
+            <returns>Achievement Id</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.ClaimByRequestNameAsync(System.String)">
+            <summary>
+            Claim the achievement to give rewards to the user
+            For more information about the rewards see <see cref="T:RGN.Modules.Achievement.AchievementData"/> class
+            </summary>
+            <param name="requestName">The achievement id to trigger</param>
             <returns>Achievement Id</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserAchievementsAsync(System.String,System.Int64,System.Int32)">
