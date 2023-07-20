@@ -162,7 +162,7 @@
             </summary>
             <param name="id">The achievement id to trigger</param>
             <param name="progress">The achievement trigger progress delta</param>
-            <returns>Achievement Id</returns>
+            <returns>Trigger and Claim response data</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.TriggerByRequestNameAsync(System.String,System.Int32)">
             <summary>
@@ -170,7 +170,7 @@
             </summary>
             <param name="requestName">The achievement request name to trigger</param>
             <param name="progress">The achievement trigger progress delta</param>
-            <returns>Achievement Id</returns>
+            <returns>Trigger and Claim response data</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.ClaimByIdAsync(System.String)">
             <summary>
@@ -178,7 +178,7 @@
             For more information about the rewards see <see cref="T:RGN.Modules.Achievement.AchievementData"/> class
             </summary>
             <param name="requestName">The achievement id to trigger</param>
-            <returns>Achievement Id</returns>
+            <returns>Trigger and Claim response data</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.ClaimByRequestNameAsync(System.String)">
             <summary>
@@ -186,7 +186,7 @@
             For more information about the rewards see <see cref="T:RGN.Modules.Achievement.AchievementData"/> class
             </summary>
             <param name="requestName">The achievement id to trigger</param>
-            <returns>Achievement Id</returns>
+            <returns>Trigger and Claim response data</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserAchievementsAsync(System.String,System.Int64,System.Int32)">
             <summary>
@@ -411,6 +411,24 @@
             in milliseconds since midnight, January 1, 1970 UTC.
             Refer to <see cref="T:RGN.Utility.DateTimeUtility"/> for helper methods.
             This field is automatically populated by the backend
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.TriggerAndClaimResponse">
+            <summary>
+            This object is returned for the Trigger and Claim methods
+            In case the achievement gave the rewards the 
+            <see cref="F:RGN.Modules.Achievement.TriggerAndClaimResponse.rewardsHaveBeenGivenOut"/> will be true. Otherwise it it false
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.TriggerAndClaimResponse.rewardsHaveBeenGivenOut">
+            <summary>
+            When the rewards have been given to the user this is true
+            Otherwise it is false
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.TriggerAndClaimResponse.rewards">
+            <summary>
+            In case the rewards have been given to the user this will contain the rewards
             </summary>
         </member>
         <member name="T:RGN.Modules.Achievement.UserAchievement">
