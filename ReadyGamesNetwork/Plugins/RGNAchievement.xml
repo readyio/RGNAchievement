@@ -148,10 +148,20 @@
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByRequestNameAsync(System.String)">
             <summary>
-            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN)
+            Asynchronously retrieves a achievement from the Ready Games Network (RGN)
             based on the provided achievement request name.
             </summary>
             <param name="requestName">Request name to filter achievements.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the provided request name is null or empty.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
+            <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievement that match the specified identifiers.</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByRequestNamesAsync(System.Collections.Generic.List{System.String})">
+            <summary>
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN)
+            based on the provided achievement request name.
+            </summary>
+            <param name="requestNames">Request names to filter achievements.</param>
             <exception cref="T:System.ArgumentNullException">Thrown when the provided request name is null or empty.</exception>
             <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
             <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the specified identifiers.</returns>
