@@ -20,24 +20,6 @@
             Handles critical operations on Achievements data
             </summary>
         </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.Admin.SetRGNCore(RGN.IRGNRolesCore)">
-            <summary>
-            Sets the Ready Games Network (RGN) core reference.
-            </summary>
-            <param name="rgnCore">The RGN core to be set.</param>
-        </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.Admin.Init">
-            <summary>
-            Initializes the AchievementsModule.Admin module.
-            This method is currently empty and can be filled with initial setup logic if needed in the future.
-            </summary>
-        </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.Admin.Dispose">
-            <summary>
-            Releases all resources used by the AchievementsModule.Admin module.
-            This method is currently empty and can be filled with cleanup logic if needed in the future.
-            </summary>
-        </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.Admin.AddAchievementAsync(RGN.Modules.Achievement.AchievementData)">
             <summary>
             Asynchronously creates a new achievement
@@ -59,24 +41,6 @@
             Asynchronously deletes existing achievement
             </summary>
             <param name="achievementId">Achievement id to remove</param>
-        </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.SetRGNCore(RGN.IRGNRolesCore)">
-            <summary>
-            Sets the Ready Games Network (RGN) core reference.
-            </summary>
-            <param name="rgnCore">The RGN core to be set.</param>
-        </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.Init">
-            <summary>
-            Initializes the AchievementsModule.
-            This method is currently empty and can be filled with initial setup logic if needed in the future.
-            </summary>
-        </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.Dispose">
-            <summary>
-            Releases all resources used by the AchievementsModule.
-            This method is currently empty and can be filled with cleanup logic if needed in the future.
-            </summary>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByIdsAsync(System.Collections.Generic.List{System.String})">
             <summary>
