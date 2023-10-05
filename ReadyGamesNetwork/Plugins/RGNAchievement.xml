@@ -151,7 +151,7 @@
             Claim the achievement to give rewards to the user
             For more information about the rewards see <see cref="T:RGN.Modules.Achievement.AchievementData"/> class
             </summary>
-            <param name="requestName">The achievement id to trigger</param>
+            <param name="achievementId">The achievement id to trigger</param>
             <returns>Trigger and Claim response data</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.ClaimByRequestNameAsync(System.String)">
