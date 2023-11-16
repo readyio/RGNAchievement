@@ -57,7 +57,7 @@
             Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) store based on
             the provided application identifiers.
             </summary>
-            <param name="appIds">A list of application identifiers used to filter the store offers.</param>
+            <param name="appIds">A list of application identifiers used to filter the achievements.</param>
             <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
             <param name="startAfter">An optional parameter representing an achievement id after which to
             start retrieving the achievements. The default is an empty string.</param>
@@ -151,7 +151,7 @@
             Claim the achievement to give rewards to the user
             For more information about the rewards see <see cref="T:RGN.Modules.Achievement.AchievementData"/> class
             </summary>
-            <param name="requestName">The achievement id to trigger</param>
+            <param name="achievementId">The achievement id to trigger</param>
             <returns>Trigger and Claim response data</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.ClaimByRequestNameAsync(System.String)">

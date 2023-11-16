@@ -26,7 +26,6 @@
     "/ReadyGamesNetwork.meta"
   ],
   "dependencies": {
-    "io.getready.rgn.core": "0.8.0",
-    "io.getready.rgn.currency": "0.8.0"
+    "io.getready.rgn.core": "0.8.0"
   }
 }
