@@ -233,16 +233,20 @@
             <summary>
             If this is provided, the the trigger for this achievement will work no more
             often that the specified cron string.
+            <code>
+            <![CDATA[
             *    *    *    *    *    *
             ┬    ┬    ┬    ┬    ┬    ┬
-            │    │    │    │    │    |
+            │    │    │    │    │    │
             │    │    │    │    │    └ day of week(0 - 7, 1L - 7L) (0 or 7 is Sun)
             │    │    │    │    └───── month(1 - 12)
             │    │    │    └────────── day of month(1 - 31, L)
             │    │    └─────────────── hour(0 - 23)
             │    └──────────────────── minute(0 - 59)
             └───────────────────────── second(0 - 59, optional)
-            You can use the https://crontab.guru/ to create cron settings
+            ]]>
+            </code>
+            You can use the <a href="https://crontab.guru/">https://crontab.guru/</a> to create cron settings
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.startTime">
@@ -263,16 +267,20 @@
             <summary>
             Define cron value when the achievement should reset. This parameter is used
             to update the <see cref="F:RGN.Modules.Achievement.AchievementData.startTime"/> and <see cref="F:RGN.Modules.Achievement.AchievementData.endTime"/> values.
+            <code>
+            <![CDATA[
             *    *    *    *    *    *
             ┬    ┬    ┬    ┬    ┬    ┬
-            │    │    │    │    │    |
+            │    │    │    │    │    │
             │    │    │    │    │    └ day of week(0 - 7, 1L - 7L) (0 or 7 is Sun)
             │    │    │    │    └───── month(1 - 12)
             │    │    │    └────────── day of month(1 - 31, L)
             │    │    └─────────────── hour(0 - 23)
             │    └──────────────────── minute(0 - 59)
             └───────────────────────── second(0 - 59, optional)
-            You can use the https://crontab.guru/ to create cron settings
+            ]]>
+            </code>
+            You can use the <a href="https://crontab.guru/">https://crontab.guru/</a> to create cron settings
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.rewards">
