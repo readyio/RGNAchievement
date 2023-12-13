@@ -162,16 +162,27 @@
             <param name="requestName">The achievement id to trigger</param>
             <returns>Trigger and Claim response data</returns>
         </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserAchievementsAsync(System.String,System.Int64,System.Int32)">
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserAchievementsAsync(System.String,System.Boolean,System.Int64,System.Int32)">
             <summary>
-            Gets current user competed achievements
-            If the <paramref name="userId"/> is provided, then it returns the comleted achievements for provided userId
+            Gets in progress or completed user achievements
+            If the <paramref name="userId"/> is provided, then it returns the completed achievements for provided userId
             Supports pagination queries in case the <paramref name="startAfter"/> and <paramref name="limit"/> are provided
             </summary>
-            <param name="userId">User id to return the completed achievements</param>
+            <param name="userId">User id to return the achievements</param>
+            <param name="withHistory">Should populate returned achievements by completion history</param>
             <param name="startAfter">The time stamp to start the query after <see cref="F:RGN.Modules.Achievement.UserAchievement.lastCompleteTime"/></param>
             <param name="limit">Maximal number of documents to return</param>
-            <returns>Requested amount of completed achievements</returns>
+            <returns>Requested amount of achievements</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserAchievementByIdAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            Gets in progress or completed user achievement by id
+            If the <paramref name="userId"/> is provided, then it returns the completed achievement for provided userId
+            </summary>
+            <param name="achievementId">Achievement id to return</param>
+            <param name="userId">User id to return the achievement</param>
+            <param name="withHistory">Should populate returned achievement by completion history</param>
+            <returns>Requested user achievement</returns>
         </member>
         <member name="T:RGN.Modules.Achievement.AchievementData">
             <summary>
