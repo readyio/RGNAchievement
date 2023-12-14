@@ -216,7 +216,7 @@
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.setBy">
             <summary>
-            Define who can trigger/claim the achievement
+            Define who can trigger/claim the achievement. 'server' or 'client'
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.isClaimable">
