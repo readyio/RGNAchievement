@@ -162,6 +162,12 @@
             <param name="requestName">The achievement id to trigger</param>
             <returns>Trigger and Claim response data</returns>
         </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetProjectAchievementsAsync">
+            <summary>
+            Retrieves currently active achievements for a project.
+            </summary>
+            <returns>Project achievements setting for different events</returns>
+        </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserAchievementsAsync(System.String,System.Boolean,System.Int64,System.Int32)">
             <summary>
             Gets in progress or completed user achievements
@@ -413,6 +419,79 @@
             in milliseconds since midnight, January 1, 1970 UTC.
             Refer to <see cref="T:RGN.Utility.DateTimeUtility"/> for helper methods.
             This field is automatically populated by the backend
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.DailyAchievements">
+            <summary>
+            Daily achievements. Triggered when the user logs in.
+            Use the 'repeatNoMoreOftenThanCron' field to specify how often the achievement can give rewards.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.DailyAchievements.daysInRow">
+            <summary>
+            The number of consecutive days for the login achievement
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.DailyAchievements.achievementId">
+            <summary>
+            The ID of the achievement to trigger
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.PlayerProgressAchievements">
+            <summary>
+            Player progress achievements. Triggered when the player progress field reaches the specified value.
+            Is triggered when 'game-updatePlayerProgress' or 'game-addPlayerProgress' is called.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PlayerProgressAchievements.playerProgressFieldName">
+            <summary>
+            The name of the player progress field
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PlayerProgressAchievements.playerProgressFieldValueToReach">
+            <summary>
+            The value of the player progress field to reach for the achievement
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PlayerProgressAchievements.achievementId">
+            <summary>
+            The ID of the achievement to trigger
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.PurchaseAchievements">
+            <summary>
+            Purchase achievements. Triggered when the user purchases a virtual item with the specified tag.
+            Is triggered when 'storeV2-buyStoreOffer' or 'storeV2-buyVirtualItems' is called.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PurchaseAchievements.virtualItemTag">
+            <summary>
+            The tag of the virtual item. When the user purchases a virtual item with this tag, the achievement is triggered.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PurchaseAchievements.achievementId">
+            <summary>
+            The ID of the achievement to trigger
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.GetProjectAchievementsResponse">
+            <summary>
+            Currently active achievements for a project
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.GetProjectAchievementsResponse.dailyAchievements">
+            <summary>
+            Daily achievements. Triggered when the user logs in.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.GetProjectAchievementsResponse.playerProgressAchievements">
+            <summary>
+            Player progress achievements. Triggered when the player progress field reaches the specified value.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.GetProjectAchievementsResponse.purchaseAchievements">
+            <summary>
+            Purchase achievements. Triggered when the user purchases a virtual item with the specified tag.
             </summary>
         </member>
         <member name="T:RGN.Modules.Achievement.TriggerAndClaimResponse">
