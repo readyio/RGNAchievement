@@ -54,7 +54,7 @@
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByAppIdsAsync(System.Collections.Generic.List{System.String},System.Int32,System.String)">
             <summary>
-            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) store based on
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) based on
             the provided application identifiers.
             </summary>
             <param name="appIds">A list of application identifiers used to filter the achievements.</param>
@@ -65,6 +65,21 @@
             <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
             <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
             <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the specified application identifiers,
+            limit and other optional parameters.</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByTagsAsync(System.Collections.Generic.List{System.String},System.Int32,System.String)">
+            <summary>
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) based on
+            the provided tags.
+            </summary>
+            <param name="tags">A list of tags used to filter the achievements.</param>
+            <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
+            <param name="startAfter">An optional parameter representing an achievement id after which to
+            start retrieving the achievements. The default is an empty string.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided tags list is null or empty.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
+            <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the specified tags,
             limit and other optional parameters.</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetForCurrentAppAsync(System.Int32,System.String)">
@@ -85,7 +100,7 @@
             the provided application identifiers. The user achievement data is also returned in case user made any progress
             with the given achievement
             </summary>
-            <param name="appIds">A list of application identifiers used to filter the store offers.</param>
+            <param name="appIds">A list of application identifiers used to filter the achievements.</param>
             <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
             <param name="startAfter">An optional parameter representing an achievement id after which to
             start retrieving the achievements. The default is an empty string.</param>
@@ -95,6 +110,24 @@
             <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
             <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
             <see cref="T:RGN.Modules.Achievement.AchievementWithUserData"/> objects representing the achievements that match the specified application identifiers,
+            limit and other optional parameters.</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByTagsWithUserDataAsync(System.Collections.Generic.List{System.String},System.Int32,System.String,System.Boolean)">
+            <summary>
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) based on
+            the provided tags. The user achievement data is also returned in case user made any progress
+            with the given achievement
+            </summary>
+            <param name="tags">A list of tags used to filter the achievements.</param>
+            <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
+            <param name="startAfter">An optional parameter representing an achievement id after which to
+            start retrieving the achievements. The default is an empty string.</param>
+            <param name="withHistory">An optional parameter to request the user achievements with the history entries. 
+            The default is false</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided tags list is null or empty.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
+            <see cref="T:RGN.Modules.Achievement.AchievementWithUserData"/> objects representing the achievements that match the specified tags,
             limit and other optional parameters.</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetForCurrentAppWithUserDataAsync(System.Int32,System.String)">
@@ -381,6 +414,11 @@
         <member name="T:RGN.Modules.Achievement.AchievementWithUserData">
             <summary>
             Represents achievement data from the backend
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementWithUserData._userAchievement">
+            <summary>
+            The user achievement data. Please use the <see cref="M:RGN.Modules.Achievement.AchievementWithUserData.GetUserAchievement"/> method instead.
             </summary>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementWithUserData.GetUserAchievement">
