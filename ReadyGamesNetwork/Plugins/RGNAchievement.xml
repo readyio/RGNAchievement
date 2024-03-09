@@ -54,7 +54,7 @@
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByAppIdsAsync(System.Collections.Generic.List{System.String},System.Int32,System.String)">
             <summary>
-            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) store based on
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) based on
             the provided application identifiers.
             </summary>
             <param name="appIds">A list of application identifiers used to filter the achievements.</param>
@@ -65,6 +65,21 @@
             <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
             <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
             <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the specified application identifiers,
+            limit and other optional parameters.</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByTagsAsync(System.Collections.Generic.List{System.String},System.Int32,System.String)">
+            <summary>
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) based on
+            the provided tags.
+            </summary>
+            <param name="tags">A list of tags used to filter the achievements.</param>
+            <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
+            <param name="startAfter">An optional parameter representing an achievement id after which to
+            start retrieving the achievements. The default is an empty string.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided tags list is null or empty.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
+            <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the specified tags,
             limit and other optional parameters.</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetForCurrentAppAsync(System.Int32,System.String)">
@@ -85,7 +100,7 @@
             the provided application identifiers. The user achievement data is also returned in case user made any progress
             with the given achievement
             </summary>
-            <param name="appIds">A list of application identifiers used to filter the store offers.</param>
+            <param name="appIds">A list of application identifiers used to filter the achievements.</param>
             <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
             <param name="startAfter">An optional parameter representing an achievement id after which to
             start retrieving the achievements. The default is an empty string.</param>
@@ -95,6 +110,24 @@
             <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
             <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
             <see cref="T:RGN.Modules.Achievement.AchievementWithUserData"/> objects representing the achievements that match the specified application identifiers,
+            limit and other optional parameters.</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByTagsWithUserDataAsync(System.Collections.Generic.List{System.String},System.Int32,System.String,System.Boolean)">
+            <summary>
+            Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) based on
+            the provided tags. The user achievement data is also returned in case user made any progress
+            with the given achievement
+            </summary>
+            <param name="tags">A list of tags used to filter the achievements.</param>
+            <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
+            <param name="startAfter">An optional parameter representing an achievement id after which to
+            start retrieving the achievements. The default is an empty string.</param>
+            <param name="withHistory">An optional parameter to request the user achievements with the history entries. 
+            The default is false</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided tags list is null or empty.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
+            <returns>A Task representing the asynchronous operation. The Result property of the Task returns a list of
+            <see cref="T:RGN.Modules.Achievement.AchievementWithUserData"/> objects representing the achievements that match the specified tags,
             limit and other optional parameters.</returns>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementsModule.GetForCurrentAppWithUserDataAsync(System.Int32,System.String)">
@@ -162,16 +195,33 @@
             <param name="requestName">The achievement id to trigger</param>
             <returns>Trigger and Claim response data</returns>
         </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserAchievementsAsync(System.String,System.Int64,System.Int32)">
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetProjectAchievementsAsync">
             <summary>
-            Gets current user competed achievements
-            If the <paramref name="userId"/> is provided, then it returns the comleted achievements for provided userId
+            Retrieves currently active achievements for a project.
+            </summary>
+            <returns>Project achievements setting for different events</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserAchievementsAsync(System.String,System.Boolean,System.Int64,System.Int32)">
+            <summary>
+            Gets in progress or completed user achievements
+            If the <paramref name="userId"/> is provided, then it returns the completed achievements for provided userId
             Supports pagination queries in case the <paramref name="startAfter"/> and <paramref name="limit"/> are provided
             </summary>
-            <param name="userId">User id to return the completed achievements</param>
+            <param name="userId">User id to return the achievements</param>
+            <param name="withHistory">Should populate returned achievements by completion history</param>
             <param name="startAfter">The time stamp to start the query after <see cref="F:RGN.Modules.Achievement.UserAchievement.lastCompleteTime"/></param>
             <param name="limit">Maximal number of documents to return</param>
-            <returns>Requested amount of completed achievements</returns>
+            <returns>Requested amount of achievements</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetUserAchievementByIdAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            Gets in progress or completed user achievement by id
+            If the <paramref name="userId"/> is provided, then it returns the completed achievement for provided userId
+            </summary>
+            <param name="achievementId">Achievement id to return</param>
+            <param name="userId">User id to return the achievement</param>
+            <param name="withHistory">Should populate returned achievement by completion history</param>
+            <returns>Requested user achievement</returns>
         </member>
         <member name="T:RGN.Modules.Achievement.AchievementData">
             <summary>
@@ -205,7 +255,7 @@
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.setBy">
             <summary>
-            Define who can trigger/claim the achievement
+            Define who can trigger/claim the achievement. 'server' or 'client'
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.isClaimable">
@@ -233,16 +283,20 @@
             <summary>
             If this is provided, the the trigger for this achievement will work no more
             often that the specified cron string.
+            <code>
+            <![CDATA[
             *    *    *    *    *    *
             ┬    ┬    ┬    ┬    ┬    ┬
-            │    │    │    │    │    |
+            │    │    │    │    │    │
             │    │    │    │    │    └ day of week(0 - 7, 1L - 7L) (0 or 7 is Sun)
             │    │    │    │    └───── month(1 - 12)
             │    │    │    └────────── day of month(1 - 31, L)
             │    │    └─────────────── hour(0 - 23)
             │    └──────────────────── minute(0 - 59)
             └───────────────────────── second(0 - 59, optional)
-            You can use the https://crontab.guru/ to create cron settings
+            ]]>
+            </code>
+            You can use the <a href="https://crontab.guru/">https://crontab.guru/</a> to create cron settings
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.startTime">
@@ -263,16 +317,20 @@
             <summary>
             Define cron value when the achievement should reset. This parameter is used
             to update the <see cref="F:RGN.Modules.Achievement.AchievementData.startTime"/> and <see cref="F:RGN.Modules.Achievement.AchievementData.endTime"/> values.
+            <code>
+            <![CDATA[
             *    *    *    *    *    *
             ┬    ┬    ┬    ┬    ┬    ┬
-            │    │    │    │    │    |
+            │    │    │    │    │    │
             │    │    │    │    │    └ day of week(0 - 7, 1L - 7L) (0 or 7 is Sun)
             │    │    │    │    └───── month(1 - 12)
             │    │    │    └────────── day of month(1 - 31, L)
             │    │    └─────────────── hour(0 - 23)
             │    └──────────────────── minute(0 - 59)
             └───────────────────────── second(0 - 59, optional)
-            You can use the https://crontab.guru/ to create cron settings
+            ]]>
+            </code>
+            You can use the <a href="https://crontab.guru/">https://crontab.guru/</a> to create cron settings
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.rewards">
@@ -318,9 +376,18 @@
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementReward.type">
             <summary>
-            The type of reward this achievement offers. 
-            This could be "virtualItem", "currency", "progression", "setLeaderboardScore" or "addLeaderboardScore"
-            to match the different types of reward systems available.
+            The type of reward this achievement offers.
+            Supported reward types are:
+            - `currency` - the reward is a quantity of currency coins.The `name` field is the name of the currency.
+            - `item_by_id` - the reward is a quantity of a virtual items.The `name` field is the id of the virtual item.
+            - `progression` - the reward is a quantity of progression.The `name` field is the id/name of the progression.
+            - `setLeaderboardScore` - the reward is a quantity of leaderboard score to set.The `name` field is the id of the
+            leaderboard.
+            - `addLeaderboardScore` - the reward is a quantity of leaderboard score to add.The `name` field is the id of the
+            leaderboard.
+            - `gamepass_by_id` - the reward is a quantity of game passes to add.The `name` field is the id of the game pass.
+            - `gamepass_by_request_name` - the reward is a quantity of game passes to add.The `name` field is the request name
+            of the game pass.
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementReward.appIds">
@@ -338,7 +405,7 @@
         <member name="F:RGN.Modules.Achievement.AchievementReward.quantity">
             <summary>
             The quantity of the reward that will be given to the user upon completing the achievement.
-            For "virtualItem" and "currency", it represents the number of items or coins rewarded.
+            For "item_by_id" and "currency", it represents the number of items or coins rewarded.
             For "progression", it represents the increment value for the user's progression.
             For "setLeaderboardScore", it represents the score that will be set for the current user to the leaderboard
             For "addLeaderboardScore", it represents the score that will be added for the current user to the leaderboard
@@ -347,6 +414,11 @@
         <member name="T:RGN.Modules.Achievement.AchievementWithUserData">
             <summary>
             Represents achievement data from the backend
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementWithUserData._userAchievement">
+            <summary>
+            The user achievement data. Please use the <see cref="M:RGN.Modules.Achievement.AchievementWithUserData.GetUserAchievement"/> method instead.
             </summary>
         </member>
         <member name="M:RGN.Modules.Achievement.AchievementWithUserData.GetUserAchievement">
@@ -385,6 +457,79 @@
             in milliseconds since midnight, January 1, 1970 UTC.
             Refer to <see cref="T:RGN.Utility.DateTimeUtility"/> for helper methods.
             This field is automatically populated by the backend
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.DailyAchievements">
+            <summary>
+            Daily achievements. Triggered when the user logs in.
+            Use the 'repeatNoMoreOftenThanCron' field to specify how often the achievement can give rewards.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.DailyAchievements.daysInRow">
+            <summary>
+            The number of consecutive days for the login achievement
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.DailyAchievements.achievementId">
+            <summary>
+            The ID of the achievement to trigger
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.PlayerProgressAchievements">
+            <summary>
+            Player progress achievements. Triggered when the player progress field reaches the specified value.
+            Is triggered when 'game-updatePlayerProgress' or 'game-addPlayerProgress' is called.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PlayerProgressAchievements.playerProgressFieldName">
+            <summary>
+            The name of the player progress field
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PlayerProgressAchievements.playerProgressFieldValueToReach">
+            <summary>
+            The value of the player progress field to reach for the achievement
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PlayerProgressAchievements.achievementId">
+            <summary>
+            The ID of the achievement to trigger
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.PurchaseAchievements">
+            <summary>
+            Purchase achievements. Triggered when the user purchases a virtual item with the specified tag.
+            Is triggered when 'storeV2-buyStoreOffer' or 'storeV2-buyVirtualItems' is called.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PurchaseAchievements.virtualItemTag">
+            <summary>
+            The tag of the virtual item. When the user purchases a virtual item with this tag, the achievement is triggered.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.PurchaseAchievements.achievementId">
+            <summary>
+            The ID of the achievement to trigger
+            </summary>
+        </member>
+        <member name="T:RGN.Modules.Achievement.GetProjectAchievementsResponse">
+            <summary>
+            Currently active achievements for a project
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.GetProjectAchievementsResponse.dailyAchievements">
+            <summary>
+            Daily achievements. Triggered when the user logs in.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.GetProjectAchievementsResponse.playerProgressAchievements">
+            <summary>
+            Player progress achievements. Triggered when the player progress field reaches the specified value.
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.GetProjectAchievementsResponse.purchaseAchievements">
+            <summary>
+            Purchase achievements. Triggered when the user purchases a virtual item with the specified tag.
             </summary>
         </member>
         <member name="T:RGN.Modules.Achievement.TriggerAndClaimResponse">
