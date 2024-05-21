@@ -257,6 +257,11 @@
             List of application ids where this achievement is used
             </summary>
         </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.tags">
+            <summary>
+            List of tags to filter the achievements
+            </summary>
+        </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.requestName">
             <summary>
             Achievement request name. This value can be used to query or trigger achievements
