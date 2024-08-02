@@ -72,15 +72,14 @@
             <see cref="T:RGN.Modules.Achievement.AchievementData"/> objects representing the achievements that match the specified application identifiers,
             limit and other optional parameters.</returns>
         </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByTagsAsync(System.Collections.Generic.List{System.String},System.Int32,System.String,System.Threading.CancellationToken)">
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByTagsAsync(System.Collections.Generic.List{System.String},System.Int32,System.Int64,System.Threading.CancellationToken)">
             <summary>
             Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) based on
             the provided tags.
             </summary>
             <param name="tags">A list of tags used to filter the achievements.</param>
             <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
-            <param name="startAfter">An optional parameter representing an achievement id after which to
-            start retrieving the achievements. The default is an empty string.</param>
+            <param name="startAfter">An optional parameter representing an achievement 'updatedAt' field after which start the retrieval</param>
             <param name="cancellationToken">A token to cancel the operation.</param>
             <exception cref="T:System.ArgumentException">Thrown when the provided tags list is null or empty.</exception>
             <exception cref="T:System.ArgumentException">Thrown when the provided limit value is zero.</exception>
@@ -120,7 +119,7 @@
             <see cref="T:RGN.Modules.Achievement.AchievementWithUserData"/> objects representing the achievements that match the specified application identifiers,
             limit and other optional parameters.</returns>
         </member>
-        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByTagsWithUserDataAsync(System.Collections.Generic.List{System.String},System.Int32,System.String,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetByTagsWithUserDataAsync(System.Collections.Generic.List{System.String},System.Int32,System.Int64,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Asynchronously retrieves a list of achievements from the Ready Games Network (RGN) based on
             the provided tags. The user achievement data is also returned in case user made any progress
@@ -128,8 +127,7 @@
             </summary>
             <param name="tags">A list of tags used to filter the achievements.</param>
             <param name="limit">An integer indicating the maximum number of achievements to retrieve.</param>
-            <param name="startAfter">An optional parameter representing an achievement id after which to
-            start retrieving the achievements. The default is an empty string.</param>
+            <param name="startAfter">An optional parameter representing an achievement 'updatedAt' field after which start the retrieval</param>
             <param name="withHistory">An optional parameter to request the user achievements with the history entries. 
             The default is false</param>
             <param name="cancellationToken">A token to cancel the operation.</param>
