@@ -240,6 +240,23 @@
             <param name="cancellationToken">A token to cancel the operation.</param>
             <returns>Requested user achievement</returns>
         </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.GetPropertiesAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Returns json string or throws an exception if there are no json for an achievement
+            </summary>
+            <param name="achievementId"></param>
+            <param name="cancellationToken">A token to cancel the operation.</param>
+            <returns>Returns json as string</returns>
+        </member>
+        <member name="M:RGN.Modules.Achievement.AchievementsModule.SetPropertiesAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Set json on a given achievement. 
+            </summary>
+            <param name="achievementId"></param>
+            <param name="json"></param>
+            <param name="cancellationToken">A token to cancel the operation.</param>
+            <returns>Returns json as string</returns>
+        </member>
         <member name="T:RGN.Modules.Achievement.AchievementData">
             <summary>
             Represents achievement data from the backend
@@ -359,6 +376,14 @@
             <summary>
             Achievement rewards ids and quantity rewards to add to users when
             the achievement is triggered
+            </summary>
+        </member>
+        <member name="F:RGN.Modules.Achievement.AchievementData.properties">
+            <summary>
+            List of achievement custom json. It is used to store game specific
+            data in json format.
+            For example: you can attach data like "damage", "range",
+            "fireRate" values
             </summary>
         </member>
         <member name="F:RGN.Modules.Achievement.AchievementData.createdAt">
